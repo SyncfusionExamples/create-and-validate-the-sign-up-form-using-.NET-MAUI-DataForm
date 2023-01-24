@@ -1,10 +1,12 @@
 ﻿namespace SignUpForm
 {
     using Syncfusion.Maui.DataForm;
+    using System;
+    using System.Collections;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class SignUpFormModel : IDataErrorInfo
+    public class SignUpFormModel : IDataErrorInfo, INotifyDataErrorInfo
     {
         [Display(Prompt = "Enter your first name", Name = "First name")]
         [DataFormDisplayOptions(ColumnSpan = 2)]
@@ -56,7 +58,6 @@
         public string State { get; set; }
 
         [Display(Prompt = "Enter your country", Name = "Country")]
-        [Required(ErrorMessage = "Please select your country")]
         public string Country { get; set; }
 
         [Display(Prompt = "Enter zip code", Name = "Zip code")]
@@ -85,6 +86,26 @@
 
                 return result;
             }
+        }
+
+        [Display(AutoGenerateField = false)]
+        public bool HasErrors
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        [Display(AutoGenerateField = false)]
+        public IEnumerable GetErrors(string propertyName)
+        {
+            var list = new List<string>();
+            if (propertyName.Equals("Country") && string.IsNullOrEmpty(this.Country))
+                list.Add("Please select your country");
+            return list;
         }
     }
 }
