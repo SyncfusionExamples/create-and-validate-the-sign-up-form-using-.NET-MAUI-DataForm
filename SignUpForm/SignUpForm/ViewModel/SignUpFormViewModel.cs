@@ -6,7 +6,7 @@
     public class SignUpFormViewModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataFormViewModel" /> class.
+        /// Initializes a new instance of the <see cref="SignUpFormViewModel" /> class.
         /// </summary>
         public SignUpFormViewModel()
         {
