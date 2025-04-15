@@ -5,6 +5,7 @@
             xmlns:system="clr-namespace:System;assembly=netstandard"
             xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
             xmlns:thickness ="clr-namespace:Microsoft.Maui;assembly=Microsoft.Maui"
+             x:DataType="local:SignUpFormViewModel"
              x:Class="SignUpForm.MainPage">
 
     <Grid>
@@ -12,10 +13,9 @@
             <local:SignUpFormViewModel/>
         </Grid.BindingContext>
 
-        <Frame HasShadow="False" BorderColor="#C2C2C2" Margin="0,15,0,10"
+        <Border  Margin="0,15,0,10"
                    HeightRequest="{OnPlatform MacCatalyst=700}"
                    VerticalOptions="{OnPlatform Default=Fill, MacCatalyst=Start}"
-                   CornerRadius="10"
                    Grid.ColumnSpan="{OnIdiom Default=2, Desktop=1}" Grid.Column="{OnIdiom Default=0, Desktop=1}"
                    WidthRequest="{OnPlatform MacCatalyst=710, WinUI=510, Default=-1}"
                    HorizontalOptions="Center" >
@@ -39,7 +39,7 @@
                                 WidthRequest="{OnPlatform Default=150, WinUI=220, MacCatalyst=295}" HeightRequest="40" TextColor="White" Background="{StaticResource PrimaryBrush}" CornerRadius="5" Margin="20,0,0,0" Padding="0"/>
                 </HorizontalStackLayout>
             </Grid>
-        </Frame>
+        </Border>
     </Grid>
     <ContentPage.Behaviors>
         <local:SignUpFormBehavior/>
