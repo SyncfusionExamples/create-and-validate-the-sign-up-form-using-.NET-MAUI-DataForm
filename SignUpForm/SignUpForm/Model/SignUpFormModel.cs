@@ -12,18 +12,18 @@
         [DataFormDisplayOptions(ColumnSpan = 2)]
         [Required(ErrorMessage = "Please enter your first name")]
         [StringLength(20, ErrorMessage = "First name should not exceed 20 characters")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter your last name", Name = "Last name")]
         [DataFormDisplayOptions(ColumnSpan = 2)]
         [Required(ErrorMessage = "Please enter your last name")]
         [StringLength(20, ErrorMessage = "First name should not exceed 20 characters")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter your email", Name = "Email")]
         [DataFormDisplayOptions(ColumnSpan = 2)]
         [EmailAddress(ErrorMessage = "Please enter your email")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [DataFormDisplayOptions(ColumnSpan = 2)]
         [Display(Prompt = "Enter your mobile number", Name = "Mobile number")]
@@ -35,30 +35,30 @@
         [DataFormDisplayOptions(ColumnSpan = 2, ValidMessage = "Password strength is good")]
         [Required(ErrorMessage = "Please enter the password")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,}$", ErrorMessage = "A minimum 8-character password should contain a combination of uppercase and lowercase letters.")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Display(Prompt = "Confirm password", Name = "Re-enter Password")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter the password")]
         [DataFormDisplayOptions(ColumnSpan = 2)]
-        public string RetypePassword { get; set; }
+        public string RetypePassword { get; set; } = string.Empty;
 
         [DataType(DataType.MultilineText)]
         [Display(Prompt = "Enter your address", Name = "Address")]
         [DataFormDisplayOptions(ColumnSpan = 2, RowSpan = 2)]
         [Required(ErrorMessage = "Please enter your address")]
-        public string Address { get; set; }
+        public string Address { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter your city", Name = "City")]
         [Required(ErrorMessage = "Please enter your city")]
-        public string City { get; set; }
+        public string City { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter your state", Name = "State")]
         [Required(ErrorMessage = "Please enter your state")]
-        public string State { get; set; }
+        public string State { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter your country", Name = "Country")]
-        public string Country { get; set; }
+        public string Country { get; set; } = string.Empty;
 
         [Display(Prompt = "Enter zip code", Name = "Zip code")]
         [Required(ErrorMessage = "Please enter your zip code")]
@@ -97,12 +97,15 @@
             }
         }
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         [Display(AutoGenerateField = false)]
-        public IEnumerable GetErrors(string propertyName)
+        public IEnumerable GetErrors(string? propertyName)
         {
+
             var list = new List<string>();
+
+            if(propertyName != null)
             if (propertyName.Equals("Country") && string.IsNullOrEmpty(this.Country))
                 list.Add("Please select your country");
             return list;
