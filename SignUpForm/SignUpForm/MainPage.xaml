@@ -22,6 +22,7 @@
 
             <Grid RowDefinitions="0.9*, 1, 60" IsClippedToBounds="True">
                 <dataForm:SfDataForm x:Name="signUpForm" 
+                                     x:DataType="local:SignUpFormViewModel"
                                      DataObject="{Binding SignUpFormModel}" 
                                      ValidationMode="PropertyChanged" 
                                      CommitMode="PropertyChanged"/>
